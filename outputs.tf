@@ -3,7 +3,7 @@ output "id" {
 }
 
 output "database_security_group_ids" {
-  value = "${aws_db_instance.postgresql.vpc_security_group_ids}"
+  value = ["${aws_db_instance.postgresql.vpc_security_group_ids}"]
 }
 
 output "hostname" {
