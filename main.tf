@@ -1,18 +1,4 @@
 #
-# Security group resources
-#
-
-resource "aws_security_group" "postgresql" {
-  vpc_id = "${var.vpc_id}"
-
-  tags {
-    Name        = "sgDatabaseServer"
-    Project     = "${var.project}"
-    Environment = "${var.environment}"
-  }
-}
-
-#
 # RDS resources
 #
 
@@ -35,7 +21,7 @@ resource "aws_db_instance" "postgresql" {
   copy_tags_to_snapshot      = "${var.copy_tags_to_snapshot}"
   multi_az                   = "${var.multi_availability_zone}"
   port                       = "${var.database_port}"
-  vpc_security_group_ids     = ["${aws_security_group.postgresql.id}"]
+  vpc_security_group_ids     = ["${var.vpc_security_group_ids}"]
   db_subnet_group_name       = "${var.subnet_group}"
   parameter_group_name       = "${var.parameter_group}"
   storage_encrypted          = "${var.storage_encrypted}"

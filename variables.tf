@@ -101,3 +101,7 @@ variable "alarm_free_memory_threshold" {
 variable "alarm_actions" {
   type = "list"
 }
+
+variable "vpc_security_group_ids" {
+  type = "list"
+}
