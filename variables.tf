@@ -24,8 +24,6 @@ variable "storage_type" {
 
 variable "vpc_id" {}
 
-variable "database_identifier" {}
-
 variable "database_name" {}
 
 variable "database_password" {}
