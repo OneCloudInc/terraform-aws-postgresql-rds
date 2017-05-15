@@ -107,3 +107,7 @@ variable "vpc_security_group_ids" {
 variable "identifiers" {
   type = "map"
 }
+
+variable "count" {
+  default = "1"
+}

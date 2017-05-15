@@ -3,7 +3,7 @@
 #
 
 resource "aws_db_instance" "postgresql" {
-  count                      = "${var.count ? var.count : 0}"
+  count                      = "${var.count}"
   allocated_storage          = "${var.allocated_storage}"
   engine                     = "postgres"
   engine_version             = "${var.engine_version}"
