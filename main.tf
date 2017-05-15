@@ -39,6 +39,7 @@ resource "aws_db_instance" "postgresql" {
 #
 
 resource "aws_cloudwatch_metric_alarm" "database_cpu" {
+  count               = "${var.count}"
   alarm_name          = "alarm${var.environment}DatabaseServerCPUUtilization"
   alarm_description   = "Database server CPU utilization"
   comparison_operator = "GreaterThanThreshold"
@@ -50,13 +51,14 @@ resource "aws_cloudwatch_metric_alarm" "database_cpu" {
   threshold           = "${var.alarm_cpu_threshold}"
 
   dimensions {
-    DBInstanceIdentifier = "${aws_db_instance.postgresql.id}"
+    DBInstanceIdentifier = "${aws_db_instance.postgresql.*.id[count.index]}"
   }
 
   alarm_actions = ["${var.alarm_actions}"]
 }
 
 resource "aws_cloudwatch_metric_alarm" "database_disk_queue" {
+  count               = "${var.count}"
   alarm_name          = "alarm${var.environment}DatabaseServerDiskQueueDepth"
   alarm_description   = "Database server disk queue depth"
   comparison_operator = "GreaterThanThreshold"
@@ -68,13 +70,14 @@ resource "aws_cloudwatch_metric_alarm" "database_disk_queue" {
   threshold           = "${var.alarm_disk_queue_threshold}"
 
   dimensions {
-    DBInstanceIdentifier = "${aws_db_instance.postgresql.id}"
+    DBInstanceIdentifier = "${aws_db_instance.postgresql.*.id[count.index]}"
   }
 
   alarm_actions = ["${var.alarm_actions}"]
 }
 
 resource "aws_cloudwatch_metric_alarm" "database_disk_free" {
+  count               = "${var.count}"
   alarm_name          = "alarm${var.environment}DatabaseServerFreeStorageSpace"
   alarm_description   = "Database server free storage space"
   comparison_operator = "LessThanThreshold"
@@ -86,13 +89,14 @@ resource "aws_cloudwatch_metric_alarm" "database_disk_free" {
   threshold           = "${var.alarm_free_disk_threshold}"
 
   dimensions {
-    DBInstanceIdentifier = "${aws_db_instance.postgresql.id}"
+    DBInstanceIdentifier = "${aws_db_instance.postgresql.*.id[count.index]}"
   }
 
   alarm_actions = ["${var.alarm_actions}"]
 }
 
 resource "aws_cloudwatch_metric_alarm" "database_memory_free" {
+  count               = "${var.count}"
   alarm_name          = "alarm${var.environment}DatabaseServerFreeableMemory"
   alarm_description   = "Database server freeable memory"
   comparison_operator = "LessThanThreshold"
@@ -104,7 +108,7 @@ resource "aws_cloudwatch_metric_alarm" "database_memory_free" {
   threshold           = "${var.alarm_free_memory_threshold}"
 
   dimensions {
-    DBInstanceIdentifier = "${aws_db_instance.postgresql.id}"
+    DBInstanceIdentifier = "${aws_db_instance.postgresql.*.id[count.index]}"
   }
 
   alarm_actions = ["${var.alarm_actions}"]
