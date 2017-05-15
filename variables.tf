@@ -105,3 +105,7 @@ variable "alarm_actions" {
 variable "vpc_security_group_ids" {
   type = "list"
 }
+
+variable "identifiers" {
+  type = "map"
+}

@@ -3,10 +3,11 @@
 #
 
 resource "aws_db_instance" "postgresql" {
+  count                      = "${var.count ? var.count : 0}"
   allocated_storage          = "${var.allocated_storage}"
   engine                     = "postgres"
   engine_version             = "${var.engine_version}"
-  identifier                 = "${var.database_identifier}"
+  identifier                 = "${lookup(var.identifiers, count.index)}"
   instance_class             = "${var.instance_type}"
   storage_type               = "${var.storage_type}"
   name                       = "${var.database_name}"
