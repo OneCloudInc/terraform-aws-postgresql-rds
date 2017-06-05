@@ -27,10 +27,7 @@ variable "vpc_id" {}
 variable "database_name" {}
 
 variable "passwords" {
-  default = {
-    "0" = "ocTestPassword"
-    "1" = "ocTestPassword"
-  }
+  type = "map"
 }
 
 variable "database_username" {}
