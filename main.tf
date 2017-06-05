@@ -11,7 +11,7 @@ resource "aws_db_instance" "postgresql" {
   instance_class             = "${var.instance_type}"
   storage_type               = "${var.storage_type}"
   name                       = "${var.database_name}"
-  password                   = "${var.database_password}"
+  password                   = "${lookup(var.passwords, count.index)}"
   username                   = "${var.database_username}"
   backup_retention_period    = "${var.backup_retention_period}"
   backup_window              = "${var.backup_window}"
