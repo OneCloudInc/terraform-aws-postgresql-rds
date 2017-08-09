@@ -24,11 +24,11 @@ variable "storage_type" {
 
 variable "vpc_id" {}
 
-variable "database_identifier" {}
-
 variable "database_name" {}
 
-variable "database_password" {}
+variable "passwords" {
+  type = "map"
+}
 
 variable "database_username" {}
 
@@ -100,4 +100,16 @@ variable "alarm_free_memory_threshold" {
 
 variable "alarm_actions" {
   type = "list"
+}
+
+variable "vpc_security_group_ids" {
+  type = "list"
+}
+
+variable "identifiers" {
+  type = "map"
+}
+
+variable "count" {
+  default = "1"
 }
