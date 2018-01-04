@@ -114,4 +114,6 @@ variable "count" {
   default = "1"
 }
 
-variable "instance_types" {}
+variable "instance_types" {
+  type = "map"
+}
