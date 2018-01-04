@@ -113,3 +113,5 @@ variable "identifiers" {
 variable "count" {
   default = "1"
 }
+
+variable "instance_types" {}

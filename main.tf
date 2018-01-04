@@ -8,7 +8,7 @@ resource "aws_db_instance" "postgresql" {
   engine                     = "postgres"
   engine_version             = "${var.engine_version}"
   identifier                 = "${lookup(var.identifiers, count.index)}"
-  instance_class             = "${var.instance_type}"
+  instance_class             = "${lookup(var.instance_types, "size_${count.index}_${terraform.env}.db_instance_type")}"
   storage_type               = "${var.storage_type}"
   name                       = "${var.database_name}"
   password                   = "${lookup(var.passwords, count.index)}"
