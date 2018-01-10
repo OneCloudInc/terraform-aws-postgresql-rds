@@ -25,7 +25,7 @@ resource "aws_db_instance" "postgresql" {
   vpc_security_group_ids     = ["${var.vpc_security_group_ids}"]
   db_subnet_group_name       = "${var.subnet_group}"
   parameter_group_name       = "${var.parameter_group}"
-  storage_encrypted          = "${var.storage_encrypted}"
+  storage_encrypted          = "${lookup(var.storage_encrypted_map, "encrypted_${count.index}")}"
 
   tags {
     Name        = "DatabaseServer"

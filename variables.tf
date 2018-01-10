@@ -117,3 +117,7 @@ variable "count" {
 variable "instance_types" {
   type = "map"
 }
+
+variable "storage_encrypted_map" {
+  type = "map"
+}
