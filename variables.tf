@@ -110,7 +110,7 @@ variable "identifiers" {
   type = "map"
 }
 
-variable "count" {
+variable "db_count" {
   default = "1"
 }
 
