@@ -30,6 +30,10 @@ variable "passwords" {
   type = "map"
 }
 
+variable "allocated_storages" {
+  type = "map"
+}
+
 variable "database_username" {}
 
 variable "database_port" {
