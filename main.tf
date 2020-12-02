@@ -4,7 +4,7 @@
 
 resource "aws_db_instance" "postgresql" {
   count                      = "${var.db_count}"
-  allocated_storage          = "${var.allocated_storage}"
+  allocated_storage          = "${lookup(var.allocated_storages, "storage_${count.index}_${terraform.env}.db_storage_gb")}"
   engine                     = "postgres"
   engine_version             = "${var.engine_version}"
   identifier                 = "${lookup(var.identifiers, count.index)}"
